@@ -1,4 +1,4 @@
-# sell_zh
+# sell
 - Spring Boot企业微信点餐系统
 
 - 买家端类目模块的开发，按照dao->service->api的顺序开发。贯穿单元测试。
