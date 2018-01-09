@@ -8,7 +8,14 @@ spring:
     show-sql: true
 server:
   context-path: /sell
-logging:
-  pattern:
-    console: "%d - %msg%n"
-  path:
+#logging:
+#  pattern:
+    # 日志输出格式
+#    console: "%d - %msg%n"
+  # 日志输出路径
+# path: D:/log
+#  日志输出，制定文件名
+#  file: D:/log/sell.log
+#  日志级别
+#  level:
+#    com.hengo.LoggerTest: debug
