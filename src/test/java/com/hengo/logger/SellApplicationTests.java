@@ -1,4 +1,4 @@
-package com.hengo;
+package com.hengo.logger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

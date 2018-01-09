@@ -1,4 +1,4 @@
-package com.hengo;
+package com.hengo.logger;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
