@@ -1,6 +1,7 @@
 package com.hengo.repository;
 
 import com.hengo.dataobject.ProductCategory;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,10 @@ public class ProductCategoryRepositoryTest {
     }
     @Test
     public void saveTest() {
-        ProductCategory productCategory = repository.findOne(2);
-        productCategory.setCategoryType(2);
-
-        /*productCategory.setCategoryId(2);
-        productCategory.setCategoryName("热门精选");
-        productCategory.setCategoryType(3);*/
-        repository.save(productCategory);
+        ProductCategory productCategory = new ProductCategory("精选", 3);
+        ProductCategory result = repository.save(productCategory);
+//        Assert.assertNotNull(result);
+//        断言不期望是空，期望是result，结果和上面一致：Assert.assertNotNull(result)
+        Assert.assertNotEquals(null, result);
     }
 }
