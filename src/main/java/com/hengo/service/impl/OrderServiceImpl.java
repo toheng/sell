@@ -5,6 +5,8 @@ import com.hengo.dataobject.OrderMaster;
 import com.hengo.dataobject.ProductInfo;
 import com.hengo.dto.CartDTO;
 import com.hengo.dto.OrderDTO;
+import com.hengo.enums.OrderStatusEnum;
+import com.hengo.enums.PayStatusEnum;
 import com.hengo.enums.ResultEnum;
 import com.hengo.exception.SellException;
 import com.hengo.repository.OrderDetailRepository;
@@ -17,10 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,6 +43,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Override
+    @Transactional
     public OrderDTO create(OrderDTO orderDTO) {
 
         String OrderId = KeyUtil.genUniqueKey();
@@ -55,7 +58,7 @@ public class OrderServiceImpl implements OrderService {
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             //2. 计算订单总价
-            orderAmount = orderDetail.getProductPrice()
+            orderAmount = productInfo.getProductPrice()
                     .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(orderAmount);
             //订单详情入库
@@ -71,9 +74,12 @@ public class OrderServiceImpl implements OrderService {
 
 //        3. 写入订单数据库 (orderMaster和orderDetail)
         OrderMaster orderMaster = new OrderMaster();
+//        属性拷贝注意，后者属性值会覆盖前者
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderId(OrderId);
         orderMaster.setOrderAmount(orderAmount);
-        BeanUtils.copyProperties(orderDTO, orderMaster);
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+        orderMaster.setPayStatus(PayStatusEnum.WAIT.getCode());
         orderMasterRepository.save(orderMaster);
 //        4. 扣库存
 //        List<CartDTO> cartDTOList = new ArrayList<>();
@@ -82,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
-        return null;
+        return orderDTO;
     }
 
     @Override
