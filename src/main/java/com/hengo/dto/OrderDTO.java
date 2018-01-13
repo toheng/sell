@@ -1,28 +1,20 @@
-package com.hengo.dataobject;
+package com.hengo.dto;
 
-import com.hengo.enums.OrderStatusEnum;
-import com.hengo.enums.PayStatusEnum;
+import com.hengo.dataobject.OrderDetail;
 import lombok.Data;
-import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Hengo.
- * 2018/1/11 17:07
+ * 2018/1/12 13:52
  */
-@Entity
 @Data
-@DynamicUpdate
-public class OrderMaster {
+public class OrderDTO {
 
     /** 订单id. */
-    @Id
     private String orderId;
 
     /** 买家名字. */
@@ -41,10 +33,10 @@ public class OrderMaster {
     private BigDecimal OrderAmount;
 
     /** 订单状态, 默认为0新下单. */
-    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
+    private Integer orderStatus;
 
     /** 支付状态, 默认为0未支付. */
-    private Integer payStatus = PayStatusEnum.WAIT.getCode();
+    private Integer payStatus;
 
     /** 创建时间. */
     private Date createTime;
@@ -52,7 +44,5 @@ public class OrderMaster {
     /** 更新时间. */
     private Date updateTime;
 
-    /** 订单详情(此注解让此字段不去数据库找对应的字段). */
-    /*@Transient
-    private List<OrderDetail> orderDetailList;*/
+    List<OrderDetail> orderDetailList;
 }
