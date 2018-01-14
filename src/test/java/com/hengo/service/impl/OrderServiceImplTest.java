@@ -1,8 +1,10 @@
 package com.hengo.service.impl;
 
 import com.hengo.dataobject.OrderDetail;
+import com.hengo.dataobject.OrderMaster;
 import com.hengo.dto.OrderDTO;
 import com.hengo.enums.OrderStatusEnum;
+import com.hengo.enums.PayStatusEnum;
 import com.hengo.enums.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -84,9 +86,15 @@ public class OrderServiceImplTest {
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
     }
 }
