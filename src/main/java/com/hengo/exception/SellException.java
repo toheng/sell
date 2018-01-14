@@ -7,6 +7,7 @@ import com.hengo.enums.ResultEnum;
  * 2018/1/12 14:37
  */
 public class SellException extends RuntimeException {
+
     private Integer code;
 
     public SellException(ResultEnum resultEnum) {
