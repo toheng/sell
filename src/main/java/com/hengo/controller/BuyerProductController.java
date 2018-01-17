@@ -34,23 +34,23 @@ public class BuyerProductController {
 
     @GetMapping("/list")
     public ResultVO list() {
-//        1. 查询所有上架商品
+        // 1. 查询所有上架商品
         List<ProductInfo> productInfoList = productService.findUpAll();
 
-//        2. 查询类目(一次性查询)
+        // 2. 查询类目(一次性查询)
         //List<Integer> categoryTypeList = new ArrayList<>();
 
-//        传统方法
+        // 传统方法
         /*for(ProductInfo productInfo : productInfoList) {
             categoryTypeList.add(productInfo.getCategoryType());
         }*/
 
-//        精简方法(java8, lambda)
+        // 精简方法(java8, lambda)
         List<Integer> categoryTypeList = productInfoList.stream()
                 .map(e -> e.getCategoryType())
                 .collect(Collectors.toList());
         List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(categoryTypeList);
-//        3. 数据拼装
+        // 3. 数据拼装
         List<ProductVO> productVOList = new ArrayList<>();
         for (ProductCategory productCategory : productCategoryList) {
             ProductVO productVO = new ProductVO();
@@ -62,10 +62,10 @@ public class BuyerProductController {
 
                 if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
-//                    将productInfo对象里的属性值拷贝到另一个对象
+                    // 将productInfo对象里的属性值拷贝到另一个对象
                     BeanUtils.copyProperties(productInfo, productInfoVO);
 
-//                    添加到List里面
+                    // 添加到List里面
                     productInfoVOList.add(productInfoVO);
                 }
             }

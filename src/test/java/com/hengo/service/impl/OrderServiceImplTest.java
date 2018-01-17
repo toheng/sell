@@ -1,11 +1,9 @@
 package com.hengo.service.impl;
 
 import com.hengo.dataobject.OrderDetail;
-import com.hengo.dataobject.OrderMaster;
 import com.hengo.dto.OrderDTO;
 import com.hengo.enums.OrderStatusEnum;
 import com.hengo.enums.PayStatusEnum;
-import com.hengo.enums.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;
@@ -43,7 +41,7 @@ public class OrderServiceImplTest {
         orderDTO.setBuyerOpenid(BUYER_OPENID);
         orderDTO.setBuyerPhone("1234567890");
 
-        List<OrderDetail>  orderDetailList = new ArrayList<>();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
 
         OrderDetail od1 = new OrderDetail();
         od1.setProductId("3456");

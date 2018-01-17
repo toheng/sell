@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class ProductVO {
 
-//    此注解, 返回给前端显示name
+    // 此注解, 返回给前端显示name
     @JsonProperty("name")
     private String categoryName;
 

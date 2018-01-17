@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 public class ProductInfoVO {
 
-//    此注解, 返回前端的名字
+    // 此注解, 返回前端的名字
     @JsonProperty("id")
     private String productId;
 
@@ -27,5 +27,4 @@ public class ProductInfoVO {
 
     @JsonProperty("icon")
     private String productIcon;
-
 }

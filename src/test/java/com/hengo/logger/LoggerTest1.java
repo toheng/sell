@@ -19,8 +19,8 @@ public class LoggerTest1 {
         String name = "hengo";
         String password = "123456";
         log.debug("debug...");
-        log.info("name: "+ name + ", password: "+ password);
-        log.info("name: {}, password: {}",name, password);
+        log.info("name: " + name + ", password: " + password);
+        log.info("name: {}, password: {}", name, password);
         log.error("error...");
     }
 }

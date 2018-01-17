@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Hengo.
  * 2018/1/10 11:37
@@ -38,7 +36,7 @@ public class CategoryServiceImplTest {
 
     @Test
     public void findByCategoryTypeIn() {
-        List<ProductCategory> productCategoryList= categoryService.findByCategoryTypeIn(Arrays.asList(1, 2, 3, 4));
+        List<ProductCategory> productCategoryList = categoryService.findByCategoryTypeIn(Arrays.asList(1, 2, 3, 4));
         Assert.assertNotEquals(0, productCategoryList);
     }
 

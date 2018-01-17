@@ -23,8 +23,7 @@ public class OrderMaster2OrderDTOConverter {
     public static List<OrderDTO> convert(List<OrderMaster> orderMasterList) {
         List<OrderDTO> orderDTOList = new ArrayList<>();
         return orderMasterList.stream().map(e ->
-            convert(e)
+                convert(e)
         ).collect(Collectors.toList());
     }
-
 }

@@ -24,6 +24,7 @@ import java.util.List;
 public class ProductServiceImplTest {
     @Autowired
     private ProductService productService;
+
     @Test
     public void findOne() {
         ProductInfo result = productService.findOne("123456");
@@ -40,7 +41,7 @@ public class ProductServiceImplTest {
     public void findAll() {
         PageRequest pageRequest = new PageRequest(0, 2);
         Page<ProductInfo> productInfoPage = productService.findAll(pageRequest);
-//        System.out.println(productInfoPage.getTotalElements());
+        // System.out.println(productInfoPage.getTotalElements());
         Assert.assertNotEquals(0, productInfoPage.getTotalElements());
     }
 

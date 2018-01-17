@@ -6,13 +6,17 @@ spring:
     password: 123456
   jpa:
     show-sql: true
+  #此配置表示, 如果返回null字段, 则不返回该字段
+  jackson:
+    default-property-inclusion: non_null
 server:
   context-path: /sell
+
 #logging:
 #  pattern:
-    # 日志输出格式
+#     日志输出格式
 #    console: "%d - %msg%n"
-  # 日志输出路径
+#   日志输出路径
 # path: D:/log
 #  日志输出，制定文件名
 #  file: D:/log/sell.log

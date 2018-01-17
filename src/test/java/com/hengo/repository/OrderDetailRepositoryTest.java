@@ -11,8 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Hengo.
  * 2018/1/12 11:45
