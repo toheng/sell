@@ -1,7 +1,11 @@
 package com.hengo.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.hengo.dataobject.OrderDetail;
+import com.hengo.enums.OrderStatusEnum;
+import com.hengo.enums.PayStatusEnum;
+import com.hengo.utils.EnumUtil;
 import com.hengo.utils.serializer.Date2LongSerializer;
 import lombok.Data;
 
@@ -74,4 +78,17 @@ public class OrderDTO {
      * 如果此字段返回值为null，但是又必须返回一个空的列表, 可以在后面设置初始值 = new ArrayList<>()
      */
     List<OrderDetail> orderDetailList;
+
+    //忽略该字段
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum() {
+        return EnumUtil.getByCode(orderStatus, OrderStatusEnum.class);
+    }
+
+    //忽略该字段
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum() {
+        return EnumUtil.getByCode(payStatus, PayStatusEnum.class);
+    }
+
 }
