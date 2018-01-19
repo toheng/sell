@@ -13,6 +13,7 @@ import com.hengo.exception.SellException;
 import com.hengo.repository.OrderDetailRepository;
 import com.hengo.repository.OrderMasterRepository;
 import com.hengo.service.OrderService;
+import com.hengo.service.PayService;
 import com.hengo.service.ProductService;
 import com.hengo.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PayService payService;
 
     @Override
     @Transactional
@@ -161,7 +165,7 @@ public class OrderServiceImpl implements OrderService {
 
         // 如果已支付，需要退款
         if (orderDTO.getPayStatus().equals(PayStatusEnum.SUCCESS.getCode())) {
-            //TODO
+            payService.refund(orderDTO);
         }
         return orderDTO;
     }
