@@ -12,6 +12,12 @@ spring:
 server:
   context-path: /sell
 
+wechat:
+  mpAppId: wxe70d7e967d020ebc
+  mpAppSecret: 0b512ffc3d269aa5feff4473f3e304d0
+
+
+
 #logging:
 #  pattern:
 #     日志输出格式
