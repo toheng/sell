@@ -35,11 +35,41 @@
                     <td>${orderDTO.getPayStatusEnum().getMessage()}</td>
                     <td>${orderDTO.getUpdateTime()}</td>
                     <td>详情</td>
-                    <td>取消</td>
+                    <td>
+                        <#if orderDTO.getOrderStatusEnum().getMessage() != "已取消">
+                            <a href="/sell/seller/order/cancel?orderId=${orderDTO.getOrderId()}">取消</a>
+                        </#if>
+                    </td>
                 </tr>
                 </#list>
                 </tbody>
             </table>
+        </div>
+    <#--分页-->
+        <div class="col-md-12 column">
+            <ul class="pagination pull-right">
+
+            <#if currentPage lte 1>
+                <li class="disabled"><a href="#">上一页</a></li>
+            <#else>
+                <li><a href="/sell/seller/order/list?page=${currentPage - 1}&size=${size}">上一页</a></li>
+            </#if>
+
+            <#list 1..orderDTOPage.getTotalPages() as index>
+                <#if currentPage == index>
+                    <li class="disabled"><a href="#">${index}</a></li>
+                <#else>
+                    <li><a href="/sell/seller/order/list?page=${index}&size=2">${index}</a></li>
+                </#if>
+            </#list>
+
+            <#if currentPage gte orderDTOPage.getTotalPages()>
+                <li class="disabled"><a href="#">下一页</a></li>
+            <#else>
+                <li><a href="/sell/seller/order/list?page=${currentPage + 1}&size=${size}">下一页</a></li>
+            </#if>
+
+            </ul>
         </div>
     </div>
 </div>
