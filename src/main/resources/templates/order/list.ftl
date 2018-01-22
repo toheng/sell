@@ -36,7 +36,7 @@
                     <td>${orderDTO.getUpdateTime()}</td>
                     <td>详情</td>
                     <td>
-                        <#if orderDTO.getOrderStatusEnum().getMessage() != "已取消">
+                        <#if orderDTO.getOrderStatusEnum().getMessage() == "新订单">
                             <a href="/sell/seller/order/cancel?orderId=${orderDTO.getOrderId()}">取消</a>
                         </#if>
                     </td>
