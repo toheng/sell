@@ -1,11 +1,15 @@
 package com.hengo.dataobject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hengo.enums.ProductStatusEnum;
+import com.hengo.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * 商品
@@ -47,10 +51,25 @@ public class ProductInfo {
     /**
      * 状态, 0正常1, 下架.
      */
-    private Integer productStatus;
+    private Integer productStatus = ProductStatusEnum.UP.getCode();
 
     /**
      * 类目编号.
      */
     private Integer categoryType;
+
+    /**
+     *
+     */
+    private Date createTime;
+
+    private Date UpdateTime;
+
+    /**
+     * 商品状态
+     */
+    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }
 }
