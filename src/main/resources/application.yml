@@ -1,40 +1,39 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8&useSSL=false
     username: root
     password: 123456
+    url: jdbc:mysql://localhost/sell?characterEncoding=utf-8&useSSL=false
   jpa:
     show-sql: true
-  #此配置表示, 如果返回null字段, 则不返回该字段
   jackson:
     default-property-inclusion: non_null
+  redis:
+    host: 192.168.64.130
+    port: 6379
 server:
   context-path: /sell
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+##  path: /var/log/tomcat/
+#  file: /var/log/tomcat/sell.log
+#  level:
+#    com.imooc.LoggerTest: debug
 
 wechat:
-  mpAppId: wxe70d7e967d020ebc
-  mpAppSecret: 0b512ffc3d269aa5feff4473f3e304d0
-#  因为公众号测试号没有支付权限.
-#  mchId: mchidhengo
-#  mchKey: mchkeyhengo
-#  keyPath: keypathhengo
-#  notifyUrl: http://hengo.s1.natapp.cc/sell/pay/notify
+  mpAppId: wxd898fcb01713c658
+  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
+  openAppId: wx6ad144e54af67d87
+  openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
   mchId: 1483469312
   mchKey: 06C56A89949D617xxxxxxxxxxx
   keyPath: /var/weixin_cert/h5.p12
   notifyUrl: http://sell.natapp4.cc/sell/pay/notify
+  templateId:
+    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
 
-
-
-#logging:
-#  pattern:
-#     日志输出格式
-#    console: "%d - %msg%n"
-#   日志输出路径
-# path: D:/log
-#  日志输出，制定文件名
-#  file: D:/log/sell.log
-#  日志级别
-#  level:
-#    com.hengo.LoggerTest: debug
+projectUrl:
+  wechatMpAuthorize: http://hengo.s1.natapp.cc
+  wechatOpenAuthorize: http://hengo.s1.natapp.cc
+  sell: http://hengo.s1.natapp.cc
