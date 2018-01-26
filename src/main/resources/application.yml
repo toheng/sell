@@ -22,8 +22,8 @@ server:
 #    com.imooc.LoggerTest: debug
 
 wechat:
-  mpAppId: wxd898fcb01713c658
-  mpAppSecret: 47ccc303338cee6e62894fxxxxxxxxxxx
+  mpAppId: wxe70d7e967d020ebc
+  mpAppSecret: 0b512ffc3d269aa5feff4473f3e304d0
   openAppId: wx6ad144e54af67d87
   openAppSecret: 91a2ff6d38a2bbccfb7e9f9079108e2e
   mchId: 1483469312
@@ -31,7 +31,7 @@ wechat:
   keyPath: /var/weixin_cert/h5.p12
   notifyUrl: http://sell.natapp4.cc/sell/pay/notify
   templateId:
-    orderStatus: e-Cqq67QxD6YNI41iRiqawEYdFavW_7pc7LyEMb-yeQ
+    orderStatus: 3pYsMpSmz6sZsLIAKBS9Q9YUrANE4hRByZf5VR8HK_s
 
 projectUrl:
   wechatMpAuthorize: http://hengo.s1.natapp.cc

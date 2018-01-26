@@ -15,6 +15,7 @@ import com.hengo.repository.OrderMasterRepository;
 import com.hengo.service.OrderService;
 import com.hengo.service.PayService;
 import com.hengo.service.ProductService;
+import com.hengo.service.PushMessageService;
 import com.hengo.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -51,6 +52,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     @Transactional
@@ -173,11 +177,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     @Transactional
     public OrderDTO finish(OrderDTO orderDTO) {
+
         // 判断订单状态
         if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {
             log.error("【完结订单】 订单状态不正确, orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
             throw new SellException(ResultEnum.ORDER_STATUS_ERROR);
         }
+
         // 完结订单状态
         orderDTO.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
         OrderMaster orderMaster = new OrderMaster();
@@ -187,6 +193,10 @@ public class OrderServiceImpl implements OrderService {
             log.error("【完结订单】 更新失败, orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        // 推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
