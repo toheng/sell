@@ -2,7 +2,6 @@ package com.hengo.service.impl;
 
 import com.hengo.dto.OrderDTO;
 import com.hengo.service.OrderService;
-import com.hengo.service.PushMessageService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

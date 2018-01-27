@@ -12,10 +12,7 @@ import com.hengo.enums.ResultEnum;
 import com.hengo.exception.SellException;
 import com.hengo.repository.OrderDetailRepository;
 import com.hengo.repository.OrderMasterRepository;
-import com.hengo.service.OrderService;
-import com.hengo.service.PayService;
-import com.hengo.service.ProductService;
-import com.hengo.service.PushMessageService;
+import com.hengo.service.*;
 import com.hengo.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -29,7 +26,6 @@ import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,6 +51,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
 
     @Override
     @Transactional
@@ -102,6 +101,10 @@ public class OrderServiceImpl implements OrderService {
                 new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
+
+        //发送websocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
+
         return orderDTO;
     }
 
