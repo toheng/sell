@@ -1,11 +1,13 @@
 package com.hengo.exception;
 
 import com.hengo.enums.ResultEnum;
+import lombok.Getter;
 
 /**
  * Created by Hengo.
  * 2018/1/12 14:37
  */
+@Getter
 public class SellException extends RuntimeException {
 
     private Integer code;
